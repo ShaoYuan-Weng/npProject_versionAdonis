@@ -1,0 +1,39 @@
+@layout('layout')
+
+@section('content')
+    <div class="article-list">
+        <div class="container" id="app">
+            <div class="intro mt-5">
+                <h2 class="text-center">Latest Articles</h2>
+            </div>
+            <div class="text-right">
+                <label class="mr-1" for="">Search: </label><input v-model.trim="input" type="text"><button class="btn" @click="clearInput">Clear</button>
+                </div>
+            <div class="row articles mt-3" id="articles">
+                <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="desk.jpg"></a>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
+                        aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                </div>
+                <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="building.jpg"></a>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
+                        aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                </div>
+                <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="loft.jpg"></a>
+                    <h3 class="name">Article Title</h3>
+                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
+                        aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                </div>
+                <div v-for="article in articles" class="col-sm-6 col-md-4 item">
+                    <a :href=article.url><img class="img-fluid" :src=article.img></a>
+                    <h3 class="name">@{{ article.title }}</h3>
+                    <p class="description">@{{ article.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+{{ script('news.js') }}
+@endsection

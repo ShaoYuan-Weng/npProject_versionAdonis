@@ -1,0 +1,16 @@
+@layout('layout')
+
+@section('content')
+    <div class="jumbotron text-center pb-0">
+        <img src="https://picsum.photos/640/426" alt="">
+    </div>
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-6 d-flex flex-column justify-content-center align-items-center post-content">
+                <p class="mt-3">Title : {{title}}</p>
+                <p>Description : {{description}}</p>
+                <p>Author : {{author}}</p>
+            </div>
+        </div>
+    </div>
+@endsection

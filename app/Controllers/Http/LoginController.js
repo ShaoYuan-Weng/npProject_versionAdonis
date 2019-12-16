@@ -1,0 +1,83 @@
+'use strict'
+const Persona = use('Persona')
+const Database = use('Database')
+
+class LoginController {
+  async login ({ request, session, auth, response }) {
+    const payload = request.only(['uid', 'password'])
+    try {
+      const user = await Persona.verify(payload)
+      await auth.login(user)
+      session.flash({ notification: 'Loggin succeed' })
+      response.redirect('/profile')
+    } catch (err) {
+      console.log(err.messages[0].message)
+      session.flash({ notification: err.messages[0].message })
+      response.redirect('/')
+    }
+  }
+
+  async logout ({ auth, session, response }) {
+    await auth.logout()
+    session.flash({ notification: 'Logged out' })
+    response.redirect('/')
+  }
+
+  async forgetForm ({ view }) {
+    return view.render('forget')
+  }
+
+  async forget ({ request, session, response }) {
+    const UserData = await Database.table('users').select('*').where('email', request.post().uid)
+    if (UserData.length === 0) {
+      session.flash({ notification: 'User not found' })
+      return response.redirect('back')
+    }
+    await Persona.forgotPassword(request.input('uid'))
+    return response.redirect('/')
+  }
+
+  async resetForm ({ params, session, response, view }) {
+    const TokenData = await Database.table('tokens').select('*').where('token', params.token)
+    if (TokenData.length === 0) {
+      session.flash({ notification: 'Weird...' })
+      return response.redirect('/')
+    }
+    return view.render('passwordResetFormToken', { token: params.token })
+  }
+
+  async reset ({ params, session, request, response }) {
+    const token = params.token
+    const payload = request.only(['password', 'password_confirmation'])
+    try {
+      const user = await Persona.updatePasswordByToken(token, payload)
+      console.log(user)
+      session.flash({ notification: 'Password changed successfully' })
+      return response.redirect('/')
+    } catch (err) {
+      console.log(err)
+      session.flash({ notification: 'Something wrong...' })
+      return response.redirect('/')
+    }
+  }
+
+  async changeShow ({ view, params }) {
+    return view.render('passwordResetForm', { username: params.username })
+  }
+
+  async change ({ request, session, params, auth, response }) {
+    const payload = request.only(['old_password', 'password', 'password_confirmation'])
+    const user = auth.user
+    try {
+      await Persona.updatePassword(user, payload)
+      session.flash({ notification: 'Password change succeeded' })
+      response.redirect('/profile')
+    } catch (err) {
+      console.log(err)
+      session.flash({ notification: err.messages[0].message })
+      response.redirect(`/change/${params.username}`)
+    }
+  }
+}
+
+module.exports = LoginController

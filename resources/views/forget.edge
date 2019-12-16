@@ -1,0 +1,12 @@
+@layout('layout')
+
+@section('content')
+<div class="login-clean mt-5">
+    <form action={{ route('/forget') }} method="post">
+        {{ csrfField() }}
+        <h2 class="text-center">Password forget Form</h2>
+        <div class="form-group"><input class="form-control" type="email" name="uid" placeholder="Email" required></div>
+        <div class="form-group"><button class="btn btn-block shadow-none" type="submit">Send</button></div>
+    </form>
+</div>
+@endsection

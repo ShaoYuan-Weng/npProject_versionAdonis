@@ -1,0 +1,16 @@
+@layout('layout')
+
+@section('content')
+<div class="login-clean mt-5">
+    <form action={{ route('/login') }} method="post">
+        {{ csrfField() }}
+        <h2 class="text-center">Login Form</h2>
+        <div class="form-group mt-3"><input class="form-control" type="email" name="uid" placeholder="Email" required></div>
+        <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" required>
+        </div>
+        <div class="form-group"><button class="btn btn-block shadow-none" type="submit">Log In</button></div>
+        <a class="forgot" href="{{ route('/forget') }}">Forgot your email or password?</a>
+        <a class="forgot mt-2" href="{{ route('/create') }}">Don't have a account?</a>
+    </form>
+</div>
+@endsection
