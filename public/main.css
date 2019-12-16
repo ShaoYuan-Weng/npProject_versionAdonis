@@ -63,7 +63,6 @@ text-align: center;
 
 .article-list .item .name {
 font-weight: bold;
-font-size: 16px;
 margin-top: 20px;
 color: inherit;
 }
@@ -71,6 +70,7 @@ color: inherit;
 .article-list .item .description {
 font-size: 14px;
 margin-top: 15px;
+color: black;
 }
 
 .article-list .item .action {
@@ -132,7 +132,6 @@ background-color: transparent;
 
 .post-content {
   font-size : 1.3rem;
-border : solid;
 }
 
 .btn:focus {
