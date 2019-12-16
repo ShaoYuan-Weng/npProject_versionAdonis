@@ -11,23 +11,23 @@
         </div>
         &nbsp;
         <div class="row articles">
-            <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="desk.jpg"></a>
+            <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="desk.jpg" alt="desk"></a>
                 <h3 class="name">Article Title</h3>
                 <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
                     aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
             </div>
-            <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="building.jpg"></a>
+            <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="building.jpg" alt="desk"></a>
                 <h3 class="name">Article Title</h3>
                 <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
                     aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
             </div>
-            <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="loft.jpg"></a>
+            <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="loft.jpg" alt="desk"></a>
                 <h3 class="name">Article Title</h3>
                 <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
                     aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
             </div>
             @each(item in post)
-            <div class="col-sm-6 col-md-4 item"><a href="{{item.title}}"><img class="img-fluid" src="https://npproject.s3.eu-west-3.amazonaws.com/{{item.title}}.png"></a>
+            <div class="col-sm-6 col-md-4 item"><a href="{{item.title}}"><img class="img-fluid" src="https://npproject.s3.eu-west-3.amazonaws.com/{{item.title}}.png" alt="{{item.title}}"></a>
                 <h3 class="name">{{item.title}}</h3>
                 <p class="description">{{item.description}}</p>
             </div>
