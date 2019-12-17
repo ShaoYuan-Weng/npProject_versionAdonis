@@ -10,21 +10,6 @@
                 <label class="mr-1" for="">Search: </label><input v-model.trim="input" type="text"><button class="btn" @click="clearInput">Clear</button>
                 </div>
             <div class="row articles mt-3" id="articles">
-                <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="desk.jpg"></a>
-                    <h3 class="name">Article Title</h3>
-                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
-                        aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
-                </div>
-                <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="building.jpg"></a>
-                    <h3 class="name">Article Title</h3>
-                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
-                        aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
-                </div>
-                <div class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="loft.jpg"></a>
-                    <h3 class="name">Article Title</h3>
-                    <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent
-                        aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
-                </div>
                 <div v-for="article in articles" class="col-sm-6 col-md-4 item">
                     <a :href=article.url><img class="img-fluid" :src=article.img></a>
                     <h3 class="name">@{{ article.title }}</h3>
