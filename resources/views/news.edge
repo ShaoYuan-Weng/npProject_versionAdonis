@@ -12,7 +12,7 @@
             <div class="row articles mt-3" id="articles">
                 <div v-for="article in articles" class="col-sm-6 col-md-4 item">
                     <a :href=article.url><img class="img-fluid" :src=article.img></a>
-                    <h3 class="name">@{{ article.title }}</h3>
+                    <h4 class="name">@{{ article.title }}</h4>
                     <p class="description">@{{ article.description }}</p>
                 </div>
             </div>
