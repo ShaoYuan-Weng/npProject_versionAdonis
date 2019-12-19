@@ -5,6 +5,7 @@ const Database = use('Database')
 class LoginController {
   async login ({ request, session, auth, response }) {
     const payload = request.only(['uid', 'password'])
+    console.log(request.post())
     const user = await Persona.verify(payload)
     await auth.login(user)
     session.flash({ notification: 'Loggin succeed' })
@@ -27,7 +28,8 @@ class LoginController {
       session.flash({ notification: 'User not found' })
       return response.redirect('back')
     }
-    await Persona.forgotPassword(request.input('uid'))
+    await Persona.forgotPassword(request.post().uid)
+    session.flash({ notification: 'Password retrieve mail sent' })
     return response.redirect('/')
   }
 

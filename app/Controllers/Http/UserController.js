@@ -55,13 +55,13 @@ class UserController {
         payload.username = data.username
         return payload
       })
-      const payloadLogin = request.only(['email', 'password'])
+      const payloadLogin = { uid: request.post().email, password: request.post().password }
       const user = await Persona.verify(payloadLogin)
       await auth.login(user)
       await session.flash({ notification: 'You have successfully created an account' })
       return response.redirect('/')
     } catch (err) {
-      console.log(err.messages[0].message)
+      console.log(err)
       session.flash({ notification: err.messages[0].message })
       response.redirect('/create')
     }

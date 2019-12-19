@@ -96,7 +96,10 @@ module.exports = {
     return {
       'email.required': 'Email is required',
       'password.mis_match': 'Invalid password',
-      'uid.exists': 'User not found'
+      'uid.exists': 'User not found',
+      'uid.unique': 'User already existed',
+      'uid.required': 'Username is required',
+      'password.required': 'Password is required'
     }
   }
 }

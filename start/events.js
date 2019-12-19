@@ -2,9 +2,8 @@ const Event = use('Event')
 const Mail = use('Mail')
 
 Event.on('forgot::password', async (data) => {
-  Newdata = JSON.parse(JSON.stringify(data))
-  await Mail.send('resetPasswordEmail', ({ data: Newdata }), (message) => {
-    message.to('shaoyuan.weng@gmail.com')
+  await Mail.send('resetPasswordEmail', ({token: data.token}), (message) => {
+    message.to('by04551@gmail.com')
     message.from('from@email')
   })
 })

@@ -35,7 +35,7 @@ new Vue ({
       .then((response) => {
         for (let i = 0; i < response.data.articles.length; i++) {
           let article = {}
-          const img = response.data.articles[i].urlToImage === null ? "blank.jpg" : response.data.articles[i].urlToImage
+          const img = response.data.articles[i].urlToImage === null ? 'blank.jpg' : response.data.articles[i].urlToImage
           article.url = response.data.articles[i].url
           article.img = img
           article.title = response.data.articles[i].title

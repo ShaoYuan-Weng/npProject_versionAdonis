@@ -1,7 +1,7 @@
 'use strict'
 
 class StoreUser {
-  get sanitizationRules() {
+  get sanitizationRules () {
     return {
       email: 'normalizeEmail',
       username: 'escape|trim',
@@ -9,7 +9,8 @@ class StoreUser {
       address: 'escape|trim'
     }
   }
-  get rules() {
+
+  get rules () {
     return {
       email: 'required|email|unique:users,email',
       password: 'required',
@@ -19,6 +20,7 @@ class StoreUser {
       username: 'required'
     }
   }
+
   get messages () {
     return {
       'email.required': 'You must provide a email address.',
@@ -27,12 +29,13 @@ class StoreUser {
       'password.required': 'You must provide a password',
       'username.required': 'You must provide a username.',
       'address.required': 'You must provide a address.',
-      'phone.required': 'You must provide a phone.',
+      'phone.required': 'You must provide a phone.'
     }
   }
+
   async fails (errorMessages) {
     console.log(errorMessages)
-    this.ctx.session.flash({notification: errorMessages[0].message})
+    this.ctx.session.flash({ notification: errorMessages[0].message })
     return this.ctx.response.redirect('back')
   }
 }
