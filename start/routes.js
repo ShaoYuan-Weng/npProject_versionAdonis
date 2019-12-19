@@ -24,7 +24,7 @@ Route.get('/create', 'NavbarController.create').middleware('guest')
 Route.get('/login', 'NavbarController.login').middleware('guest')
 Route.post('/login', 'LoginController.login')
 Route.get('/logout', 'LoginController.logout')
-Route.resource('users', 'UserController').middleware('auth').validator(new Map([
+Route.resource('users', 'UserController').validator(new Map([
   [['users.store'], ['StoreUser']],
   [['users.update'], ['UpdateUser']]
 ]))
