@@ -35,11 +35,6 @@ C'est l'implémentation du projet npProject avec le framework nodejs Adonis.
 
 ### Outils utilisés
 
-#### Frontend
-* HTML, CSS (Bootstrap)
-* Vuejs (petite implémentation avec le CDN)
-
-#### Backend
 * Nodejs avec le framework [Adonis](https://adonisjs.com/)
 * [Persona](https://github.com/adonisjs/adonis-persona)
 
