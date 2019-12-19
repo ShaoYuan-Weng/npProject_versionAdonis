@@ -2,6 +2,7 @@
 const Persona = use('Persona')
 const Database = use('Database')
 const Hash = use('Hash')
+const Event = use('Event')
 
 class LoginController {
   async login ({ request, session, auth, response }) {
@@ -29,9 +30,11 @@ class LoginController {
       session.flash({ notification: 'User not found' })
       return response.redirect('back')
     }
-    await Persona.forgotPassword(request.post().uid)
 
-    // I realized that Persona generates "/" in reset tokens, which causes problems. So I make the token less longer
+    const safeToken = await Hash.make(request.post().uid)
+    const ShortSafeToken = safeToken.substring(0, 10)
+    await Database.table('tokens').where('user_id', UserData[0].id).update('token', ShortSafeToken)
+    Event.fire('forgot::password', { ShortSafeToken })
     session.flash({ notification: 'Password retrieve mail sent' })
     return response.redirect('/')
   }
