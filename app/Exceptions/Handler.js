@@ -24,12 +24,12 @@ class ExceptionHandler extends BaseExceptionHandler {
     if (error.name === 'InvalidSessionException') {
       session.flash({ notification: 'You have to login first' })
       await session.commit()
-      response.redirect('/')
+      response.redirect('back')
     }
     if (error.name === 'ValidationException') {
       session.flash({ notification: error.messages[0].message })
       await session.commit()
-      response.redirect('/')
+      response.redirect('back')
     }
   }
 

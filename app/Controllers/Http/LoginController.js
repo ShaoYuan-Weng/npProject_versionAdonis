@@ -1,6 +1,7 @@
 'use strict'
 const Persona = use('Persona')
 const Database = use('Database')
+const Hash = use('Hash')
 
 class LoginController {
   async login ({ request, session, auth, response }) {
@@ -29,6 +30,9 @@ class LoginController {
       return response.redirect('back')
     }
     await Persona.forgotPassword(request.post().uid)
+    // I realized that Persona generates "/" in tokens, which causes problems. So I make the token less longer
+    const safeToken = await Hash.make(request.post().uid)
+    await Database.table('tokens').where('user_id', UserData[0].id).update('token', safeToken.substring(0, 10))
     session.flash({ notification: 'Password retrieve mail sent' })
     return response.redirect('/')
   }
