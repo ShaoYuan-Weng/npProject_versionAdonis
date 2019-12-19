@@ -40,7 +40,7 @@ class NavbarController {
     return view.render('usercreate', logCheck(auth))
   }
 
-  async post ({ params, auth, view, response }) {
+  async post ({ params, session, auth, view, response }) {
     const PostData = await Database.table('posts').select('*').where('title', params.title)
     if (PostData[0]) {
       const data = logCheck(auth)
@@ -49,6 +49,7 @@ class NavbarController {
       data.author = PostData[0].author
       return view.render('post', data)
     } else {
+      session.flash({ notification: 'Page not found' })
       response.redirect('back')
     }
   }

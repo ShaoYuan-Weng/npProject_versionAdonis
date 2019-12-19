@@ -24,7 +24,7 @@ class LoginController {
   }
 
   async forgetForm ({ view }) {
-    return view.render('forget')
+    return view.render('forget', { navbar: 'login' })
   }
 
   async forget ({ request, session, response }) {
@@ -43,7 +43,7 @@ class LoginController {
       session.flash({ notification: 'Weird...' })
       return response.redirect('/')
     }
-    return view.render('passwordResetFormToken', { token: params.token })
+    return view.render('passwordResetFormToken', { token: params.token, navbar: 'login' })
   }
 
   async reset ({ params, session, request, response }) {
