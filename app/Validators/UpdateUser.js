@@ -3,7 +3,6 @@
 class UpdateUser {
   get sanitizationRules () {
     return {
-      email: 'normalizeEmail',
       username: 'escape|trim',
       phone: 'escape|trim',
       address: 'escape|trim'
@@ -12,7 +11,6 @@ class UpdateUser {
 
   get rules () {
     return {
-      email: 'required|email|unique:users,email',
       address: 'required',
       phone: 'required',
       username: 'required'

@@ -100,7 +100,7 @@ class UserController {
    * @param {Response} ctx.response
    */
   async update ({ auth, request, response }) {
-    const payload = request.only(['email', 'username', 'phone', 'address'])
+    const payload = request.only(['username', 'phone', 'address'])
     const user = auth.user
     await Persona.updateProfile(user, payload)
     response.redirect('/profile')
