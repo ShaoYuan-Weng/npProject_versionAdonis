@@ -5,16 +5,10 @@ const Database = use('Database')
 class LoginController {
   async login ({ request, session, auth, response }) {
     const payload = request.only(['uid', 'password'])
-    try {
-      const user = await Persona.verify(payload)
-      await auth.login(user)
-      session.flash({ notification: 'Loggin succeed' })
-      response.redirect('/profile')
-    } catch (err) {
-      console.log(err.messages[0].message)
-      session.flash({ notification: err.messages[0].message })
-      response.redirect('/')
-    }
+    const user = await Persona.verify(payload)
+    await auth.login(user)
+    session.flash({ notification: 'Loggin succeed' })
+    response.redirect('/profile')
   }
 
   async logout ({ auth, session, response }) {

@@ -26,7 +26,11 @@ class ExceptionHandler extends BaseExceptionHandler {
       await session.commit()
       response.redirect('/')
     }
-    console.log(error)
+    if (error.name === 'ValidationException') {
+      session.flash({ notification: error.messages[0].message })
+      await session.commit()
+      response.redirect('/')
+    }
   }
 
   /**

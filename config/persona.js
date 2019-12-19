@@ -95,7 +95,8 @@ module.exports = {
   validationMessages: () => {
     return {
       'email.required': 'Email is required',
-      'password.mis_match': 'Invalid password'
+      'password.mis_match': 'Invalid password',
+      'uid.exists': 'User not found'
     }
   }
 }
