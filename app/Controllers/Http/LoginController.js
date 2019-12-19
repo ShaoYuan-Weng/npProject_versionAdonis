@@ -30,9 +30,8 @@ class LoginController {
       return response.redirect('back')
     }
     await Persona.forgotPassword(request.post().uid)
-    // I realized that Persona generates "/" in tokens, which causes problems. So I make the token less longer
-    const safeToken = await Hash.make(request.post().uid)
-    await Database.table('tokens').where('user_id', UserData[0].id).update('token', safeToken.substring(0, 10))
+
+    // I realized that Persona generates "/" in reset tokens, which causes problems. So I make the token less longer
     session.flash({ notification: 'Password retrieve mail sent' })
     return response.redirect('/')
   }
@@ -47,17 +46,15 @@ class LoginController {
   }
 
   async reset ({ params, session, request, response }) {
-    const token = params.token
-    const payload = request.only(['password', 'password_confirmation'])
-    try {
-      const user = await Persona.updatePasswordByToken(token, payload)
-      console.log(user)
-      session.flash({ notification: 'Password changed successfully' })
+    const TokenData = await Database.table('tokens').select('*').where('token', params.token)
+    if (TokenData.length !== 0) {
+      const PasswordHashed = await Hash.make(request.post().password)
+      await Database.table('users').where('id', TokenData[0].user_id).update('password', PasswordHashed)
+      session.flash({ notification: 'password reset succeeded' })
       return response.redirect('/')
-    } catch (err) {
-      console.log(err)
-      session.flash({ notification: 'Something wrong...' })
-      return response.redirect('/')
+    } else {
+      session.flash({ notification: 'something wrong...' })
+      return response.redirect('back')
     }
   }
 
@@ -68,15 +65,9 @@ class LoginController {
   async change ({ request, session, params, auth, response }) {
     const payload = request.only(['old_password', 'password', 'password_confirmation'])
     const user = auth.user
-    try {
-      await Persona.updatePassword(user, payload)
-      session.flash({ notification: 'Password change succeeded' })
-      response.redirect('/profile')
-    } catch (err) {
-      console.log(err)
-      session.flash({ notification: err.messages[0].message })
-      response.redirect(`/change/${params.username}`)
-    }
+    await Persona.updatePassword(user, payload)
+    session.flash({ notification: 'Password change succeeded' })
+    response.redirect('/profile')
   }
 }
 
