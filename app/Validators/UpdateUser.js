@@ -1,7 +1,7 @@
 'use strict'
 
 class UpdateUser {
-  get sanitizationRules() {
+  get sanitizationRules () {
     return {
       email: 'normalizeEmail',
       username: 'escape|trim',
@@ -9,7 +9,8 @@ class UpdateUser {
       address: 'escape|trim'
     }
   }
-  get rules() {
+
+  get rules () {
     return {
       email: 'required|email|unique:users,email',
       address: 'required',
@@ -17,10 +18,11 @@ class UpdateUser {
       username: 'required'
     }
   }
-  async fails (errorMessages, {session, response}) {
+
+  async fails (errorMessages) {
     console.log(errorMessages)
-    session.flash({notification: errorMessages})
-    return response.redirect('back')
+    this.ctx.session.flash({ notification: errorMessages[0].message })
+    return this.ctx.response.redirect('back')
   }
 }
 
