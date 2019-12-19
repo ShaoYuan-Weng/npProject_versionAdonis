@@ -1,8 +1,8 @@
 # npProject_versionAdonis
 C'est l'implémentation du projet npProject avec le framework nodejs Adonis.
 
-### Structures des bases de données 
-#### User
+## Structures des bases de données (mySQL)
+### User
 | Field        | Type           | Null  | Key   |Default|Extra  |
 | -------------|:--------------:|:-----:|:------:|:------:|:------:|
 | id           | INT        |   NO  | PRI   | NULL  |AUTO_INCREMENT  |
@@ -12,7 +12,7 @@ C'est l'implémentation du projet npProject avec le framework nodejs Adonis.
 | phone       | VARCHAR    |   NO  |       | NULL  |       |
 | password     | VARCHAR    |   NO  |       | NULL  |       |
 
-#### Post
+### Post
 | Field        | Type           | Null  | Key   |Default|Extra  |
 | -------------|:--------------:|:-----:|:------:|:------:|:------:|
 | id           | INT        |   NO  | PRI   | NULL  |AUTO_INCREMENT  |
@@ -22,7 +22,7 @@ C'est l'implémentation du projet npProject avec le framework nodejs Adonis.
 | author       | VARCHAR    |   NO  |       | NULL  |       |
 | date       | VARCHAR    |   NO  |       | NULL  |       |
 
-#### Token
+### Token
 | Field        | Type           | Null  | Key   |Default|Extra  |
 | -------------|:--------------:|:-----:|:------:|:------:|:------:|
 | id           | INT        |   NO  | PRI   | NULL  |AUTO_INCREMENT  |
@@ -33,15 +33,15 @@ C'est l'implémentation du projet npProject avec le framework nodejs Adonis.
 | updated_at       | date    |   NO  |       | NULL  |       |
 | created_at       | date    |   NO  |       | NULL  |       |
 
-### Outils utilisés
+## Outils utilisés
 
 * Nodejs avec le framework [Adonis](https://adonisjs.com/)
 * [Persona](https://github.com/adonisjs/adonis-persona)
 
-#### Hébergement
+## Hébergement
 * [Heroku](https://www.heroku.com/)
 
-### Structures des fichiers
+## Structures des fichiers
 
 * **entry-point:** start/app.js
 * **route:** start/routes.js
