@@ -1,9 +1,18 @@
 body {
+font-family: 'Telex', sans-serif;
+}
+
+.display-1 {
+font-family: 'Josefin Sans', sans-serif;
+}
+
+h1, h3 {
 font-family: 'Inconsolata', monospace;
 }
 
 #mainNav {
 background-color: white;
+font-family: 'Inconsolata', monospace;
 }
 
 .native-brand {
